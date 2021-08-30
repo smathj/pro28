@@ -22,21 +22,27 @@ public class MailController {
                                                           throws Exception{
     	request.setCharacterEncoding("utf-8");
     	response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-       StringBuffer sb = new StringBuffer();
- 	   sb.append("<html><body>");
+        
+    	PrintWriter out = response.getWriter();
+        
+        StringBuffer sb = new StringBuffer();
+ 	    
+        sb.append("<html><body>");
  		sb.append("<meta http-equiv='Content-Type' content='text/html; charset=euc-kr'>");
- 		sb.append("<h1>"+"Á¦Ç°¼Ò°³"+"<h1><br>");
- 		sb.append("½Å°£ µµ¼­¸¦ ¼Ò°³ÇÕ´Ï´Ù.<br><br>");
- 		sb.append("<a href='http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788956746425&orderClick=LAG&Kc=#N'>");
- 		sb.append("<img  src='http://image.kyobobook.co.kr/images/book/xlarge/425/x9788956746425.jpg' /> </a><br>");
- 		sb.append("</a>");
- 		sb.append("<a href='http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788956746425&orderClick=LAG&Kc=#N'>»óÇ°º¸±â</a>");
+ 		sb.append("<h1>"+"ë©ë©ì´ ì†Œê°œ"+"<h1><br>");
+ 		sb.append("ìƒˆë¡œìš´ ê°œìƒˆë¼ë¥¼ ì†Œê°œí•©ë‹ˆë‹¤.<br><br>");
+// 		sb.append("<a href='http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788956746425&orderClick=LAG&Kc=#N'>");
+// 		sb.append("<img  src='http://image.kyobobook.co.kr/images/book/xlarge/425/x9788956746425.jpg' /> </a><br>");
+ 		sb.append("<img  src='https://mblogthumb-phinf.pstatic.net/20160520_138/rlaantjd8204_1463747610911xH1HI_JPEG/%B9%E9%B1%B82.jpg?type=w2' /> </a><br>");
+// 		sb.append("</a>");
+// 		sb.append("<a href='http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788956746425&orderClick=LAG&Kc=#N'>ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½</a>");
  		sb.append("</body></html>");
+ 		
  		String str=sb.toString();
- 		mailService.sendMail("¼ö½ÅÀÚ@naver.com","½Å»óÇ°À» ¼Ò°³ÇÕ´Ï´Ù.",str);
+ 		
+ 		mailService.sendMail("jin03192@naver.com","ìƒˆë¡œìš´ ê°•ì•„ì§€ë¥¼ ì†Œê°œí•©ë‹ˆë‹¤.",str);
       
-        out.print("¸ŞÀÏÀ» º¸³Â½À´Ï´Ù!!");
+        out.print("ë©”ì¼ì„ ë³´ëƒˆìŠµë‹ˆë‹¤!!");
     }
 }
 

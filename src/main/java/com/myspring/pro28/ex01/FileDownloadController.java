@@ -15,24 +15,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /*@Controller*/
 public class FileDownloadController {
+	
 	private static String CURR_IMAGE_REPO_PATH = "c:\\spring\\image_repo";
 
 	@RequestMapping("/download")
 	public void download(@RequestParam("imageFileName") String imageFileName,
 			                 HttpServletResponse response)throws Exception {
+		
+		// ì„œë²„ì˜ íŠ¹ì •ê²½ë¡œì— ìˆëŠ” íŒŒì¼ì„ ë‹¤ìš´ë¡œë“œí•˜ëŠ” ë°©ì‹
+		
 		OutputStream out = response.getOutputStream();
+		
 		String downFile = CURR_IMAGE_REPO_PATH + "\\" + imageFileName;
 		File file = new File(downFile);
-
+		
+		// point
 		response.setHeader("Cache-Control", "no-cache");
-		response.addHeader("Content-disposition", "attachment; fileName=" + imageFileName);
+		response.addHeader("Content-disposition", "attachment; fileName=" + imageFileName); 
+		// í—¤ë”ì— íŒŒì¼ ì´ë¦„ì„ ì„¤ì •í•œë‹¤
+		
 		FileInputStream in = new FileInputStream(file);
-		byte[] buffer = new byte[1024 * 8];
+		
+		byte[] buffer = new byte[1024 * 8];	// 8KB ì”© ì½ëŠ”ë‹¤
+		
 		while (true) {
-			int count = in.read(buffer); // ¹öÆÛ¿¡ ÀĞ¾îµéÀÎ ¹®ÀÚ°³¼ö
-			if (count == -1) // ¹öÆÛÀÇ ¸¶Áö¸·¿¡ µµ´ŞÇß´ÂÁö Ã¼Å©
+			int count = in.read(buffer);
+			if (count == -1)
 				break;
-			out.write(buffer, 0, count);
+			out.write(buffer, 0, count); // byte ë°°ì—´ bufferë¥¼ 0ë¶€í„° countë§Œí¼ OutputStreamìœ¼ë¡œ ë³´ë‚¸ë‹¤ 
 		}
 		in.close();
 		out.close();

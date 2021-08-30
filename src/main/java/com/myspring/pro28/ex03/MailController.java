@@ -22,10 +22,17 @@ public class MailController {
                                                           throws Exception{
     	request.setCharacterEncoding("utf-8");
     	response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
-        mailService.sendMail("¼ö½ÅÀÚ@naver.com","Å×½ºÆ® ¸ŞÀÏ","¾È³çÇÏ¼¼¿ä.º¸³½ ¸ŞÀÏ ³»¿ëÀÔ´Ï´Ù.");
-        mailService.sendPreConfiguredMail("Å×½ºÆ® ¸ŞÀÏÀÔ´Ï´Ù.");
-        out.print("¸ŞÀÏÀ» º¸³Â½À´Ï´Ù!!");
+        
+    	PrintWriter out = response.getWriter();
+        //                        ë°›ëŠ”ì´            ì œëª©                ë‚´ìš©
+        mailService.sendMail("smathj@naver.com","í…ŒìŠ¤íŠ¸ ë©”ì¼","ì•ˆë…•í•˜ì„¸ìš”, í…ŒìŠ¤íŠ¸ ë©”ì¼ì…ë‹ˆë‹¤.");
+        
+        // ì •ê¸°ì ìœ¼ë¡œ ë³´ë‚¼ê²½ìš° xmlì— ë¯¸ë¦¬ ì„¤ì •í•œ ë‚´ìš©ì—
+        // ë‚´ìš© ë¶€ë¶„ë§Œ ì±„ìš°ëŠ” ë°©ì‹
+        // ë³´ë‚´ëŠ”ì´, ë°›ëŠ”ì´, ì œëª© ì€ ë¯¸ë¦¬ ì„¤ì •
+        mailService.sendPreConfiguredMail("í…ŒìŠ¤íŠ¸ ë©”ì¼ì…ë‹ˆë‹¤.");	// ë©”ì„¸ì§€ ë‚´ìš©
+        
+        out.print("ë©”ì¼ì„ ë³´ëƒˆìŠµë‹ˆë‹¤!!");
     }
 }
 

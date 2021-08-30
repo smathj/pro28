@@ -4,10 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  <!-- 이 서버를 통해서 메일을 전송한다 -->
   <property name="host" value="smtp.gmail.com" />
-  <property name="port" value="587" />
-  <property name="username" value="송신자@gmail.com" />
-  <property name="password" value="메일비밀번호" />
+  <property name="port" value="587" /> <!-- 465 or 587 포트사용 -->
+  <property name="username" value="보내는 메일 아이디" />
+  <property name="password" value="보내는 메일 패스워드" />
+  
+<!-- 메일 전달 프로토콜 세부 속성을 설정합니다 -->
   <property name="javaMailProperties">
     <props>
        <prop key="mail.transport.protocol">smtp</prop>
@@ -20,10 +23,11 @@
 </bean>
  
 <!-- You can have some pre-configured messagess also which are ready to send -->
+<!-- 정기적으로 수신자에게 보낼경우 제목 수신자 송신자 정할 수 있다 -->
 	<bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
-   <property name="to" value="수신자@naver.com"></property>
-   <property name="from" value="송신자@gmail.com"></property>
-   <property name="subject" value="테스트 메일입니다."/>
+	   <property name="to" value="받는 이메일"></property>
+	   <property name="from" value="보내는 이메일"></property>
+	   <property name="subject" value="메일 제목"/>
 	</bean>
 </beans>
 

@@ -19,16 +19,18 @@ public class MailService {
  
     @Async
 	public void sendMail(String to, String subject, String body) {
-      MimeMessage message = mailSender.createMimeMessage();
+      MimeMessage message = mailSender.createMimeMessage();	// MimeMessage 타입 객체를 생성한다
       try {
-		MimeMessageHelper messageHelper = 
-		new MimeMessageHelper(message, true, "UTF-8");
-		//messageHelper.setCc("zzzzzz@naver.com");
-		messageHelper.setFrom("�۽���@naver.com", "ȫ�浿");
+		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+		
+		messageHelper.setCc("smathj@naver.com");
+		messageHelper.setFrom("smathj007@gmail.com", "나태쿤");
 		messageHelper.setSubject(subject);
 		messageHelper.setTo(to); 
-		messageHelper.setText(body );
-		mailSender.send(message);  
+		messageHelper.setText(body);
+		
+		mailSender.send(message);
+		
       }catch(Exception e){
 		e.printStackTrace();
 	  }
@@ -36,9 +38,14 @@ public class MailService {
  
 	@Async
 	public void sendPreConfiguredMail(String message) {
+	// mail-context.xml에서 미리 설정한 수신 주소로 메일 내용을 보냅니다  
 	  SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
+	  
 	  mailMessage.setText(message);
+	  
 	  mailSender.send(mailMessage);
+	  
 	}
+	
 }
 
